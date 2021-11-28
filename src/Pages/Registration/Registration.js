@@ -1,55 +1,92 @@
-import axios from 'axios';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import swal from 'sweetalert';
+//Include Sweetalert
+//axios for api request
+import axios from 'axios';
 
-const Registration = () => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    
-    const onSubmit = data => {
-        console.log(data);
+class Registration extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
-        axios.post('https://warm-river-62334.herokuapp.com/users', data)
-            .then(res => {
-                if (res.data.insertedId) {
-                    swal({
-                        title: "WOW!",
-                        text: "User Created Successfully!",
-                        icon: "success",
-                        button: "Ok!",
-                    });
-                    reset();
-                }
+        this.state = {
+            user_email: '',
+            user_password: '',
+            confirmPassword: ''
+        }  
+    }
 
-            })
+    onChangeEmail(e){
+        this.setState({
+            user_email:e.target.value
+        })
+    };
+    onChangePassword(e){
+        this.setState({
+            user_password:e.target.value
+        })
+    };
+    onChangeConfirmPassword(e){
+        this.setState({
+            confirmPassword:e.target.value
+        })
     };
 
-    return (
-        <div className="container col-lg-8 col-sm-12">
-            <div>
-                
-                <h2  className="fw-bold">Registration Form
-                </h2>
+    onSubmit(e){
+        e.preventDefault();
 
-                {/* {
-                    success &&
-                   
-                   
-                } */}
+        const obj={
+            user_email: this.state.user_email,
+            user_password:this.state.user_password
+        };
 
-                <form className="add-form mt-5" onSubmit={handleSubmit(onSubmit)}>
-                    <input required className="rounded p-2 m-2" placeholder="Email" type="email"{...register("user_email", { required: true })} />
+        axios.post('htttp://', obj)
+        .then(res=>console.log(res.data));
 
-                    <input required className="rounded p-2 m-2 " placeholder="Password" type="password" {...register("user_password")} />
-                    <input required className="rounded p-2 m-2 " placeholder="Confirmed Password" type="password"/>
+        this.setState({
+            user_email:'',
+            user_password:'',
+            confirmPassword:''
+        })
+    };
 
-                    {errors.exampleRequired && <span>This field is required</span>}
 
-                    <input className="btn btn1 mt-3 mb-5" type="submit" />
+   
+
+
+    render() {
+
+        return (
+            <div className="App container mt-5">
+                <h1 className="text-center mt-2 mb-2">Reactjs Save User Register Form Data in phpmysql database</h1>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <label>Email: </label>
+                        <input type="email" className="form-control" 
+                        value={this.state.user_email}
+                        onChange={this.onChangeEmail} />
+                    </div>
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input type="password" className="form-control" 
+                        value={this.state.user_password}
+                        onChange={this.onChangePassword}/>
+                    </div>
+                    <div className="form-group">
+                        <label>ConfirmPassword: </label>
+                        <input type="password" className="form-control" 
+                        onChange={this.onChangeConfirmPassword}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Register User"/>
+                        
+                    </div>
                 </form>
             </div>
-        </div>
-    );
-};
+        )
+    };
+}
 
 export default Registration;
