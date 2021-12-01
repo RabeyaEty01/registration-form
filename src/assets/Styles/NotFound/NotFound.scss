@@ -1,0 +1,10 @@
+@import '../../Variables/Variables.scss';
+
+.notfound{
+    button{
+        @include buttonStyle($primaryColor, 100px);
+        border-radius:20px;
+        border:none;
+        
+    }
+}

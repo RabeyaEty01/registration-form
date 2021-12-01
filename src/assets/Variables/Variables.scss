@@ -1,0 +1,18 @@
+$bgYellowColor:rgba(255, 187, 0, 0.712);
+$primaryColor:#0d6efd;
+$WhiteColor:#ffff;
+$BlackColor:black;
+
+//width
+$fullWidth: 100%;
+
+@mixin buttonStyle($bgColor, $width, $fontColor) {
+    background-color: $bgColor;
+    margin: 10px;
+    border:none;
+    border-radius: 2px;
+    width: $width;
+    color: $fontColor;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

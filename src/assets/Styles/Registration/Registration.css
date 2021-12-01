@@ -1,0 +1,33 @@
+.registration {
+  margin-top: 10%;
+}
+
+.registration button {
+  background-color: rgba(255, 187, 0, 0.712);
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.registration-form input {
+  width: 100%;
+  height: 10vh;
+  border: none;
+  border: 1px solid #4d4a4a;
+}
+
+.registration-form button {
+  background-color: #0d6efd;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  color: #ffff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/*# sourceMappingURL=Registration.css.map */

@@ -1,0 +1,21 @@
+@import '../../Variables/Variables.scss';
+
+.registration{
+    margin-top: 10%;
+    button{
+        @include buttonStyle($bgYellowColor, $fullWidth,$BlackColor);
+    }
+}
+.registration-form{
+    input{
+        width:$fullWidth;
+        height: 10vh;
+        border:none;
+        border:1px solid rgb(77, 74, 74);
+    }
+    
+    button{
+     @include buttonStyle($primaryColor, $fullWidth,$WhiteColor);
+    }
+
+}
